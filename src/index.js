@@ -5,7 +5,7 @@ import App from './App';
 import Login from './components/Login';
 import Course from './components/Course';
 import Dashboard from './components/Dashboard';
-//import Topic from './components/Topic';
+import Topic from './components/Topic';
 
 import {BrowserRouter,Route} from 'react-router-dom';
 
@@ -18,6 +18,7 @@ ReactDOM.render(
         {/* <Route path="/topics/:id/:name" component={Topic}/>
         <Route path="/courses" component={Course}/> */}
         <Route path="/dashboard" component={Dashboard}/>
+        <Route path="/topics" component={Topic}/>
     
     </div>
     </BrowserRouter>
