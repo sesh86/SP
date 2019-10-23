@@ -4,6 +4,7 @@ import './index.css';
 import App from './App';
 import Login from './components/Login';
 import Course from './components/Course';
+import CourseAdd from './components/CourseAdd';
 import Dashboard from './components/Dashboard';
 //import Topic from './components/Topic';
 
@@ -18,6 +19,8 @@ ReactDOM.render(
         {/* <Route path="/topics/:id/:name" component={Topic}/>
         <Route path="/courses" component={Course}/> */}
         <Route path="/dashboard" component={Dashboard}/>
+        <Route path="/course" component={Course}/>
+        <Route path="/CourseAdd"component={CourseAdd}/>
     
     </div>
     </BrowserRouter>
