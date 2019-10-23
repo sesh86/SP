@@ -9,7 +9,7 @@ import Topic from './components/Topic';
 import TopicAdd from './components/TopicAdd';
 import TopicEdit from './components/TopicEdit';
 
-import {BrowserRouter,Route} from 'react-router-dom';
+import {BrowserRouter,Route, Link, NavLink} from 'react-router-dom';
 
 import * as serviceWorker from './serviceWorker';
 
