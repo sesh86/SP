@@ -1,11 +1,17 @@
 import React, { Component } from 'react'
+import {BrowserRouter,Route, Link, NavLink} from 'react-router-dom';
 
 export class Topic extends Component {
     render() {
         return (
+            
             <div>
                 <h1>course topic</h1>
                 <table className="table">
+                <Link to="topic-add">Add</Link>
+                
+
+                    
                     
                     <tr>
                         <th>s.no</th>
