@@ -11,3 +11,44 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
+
+
+body{
+  background-color:skyblue;
+}
+
+.container{
+  margin: 50px auto;
+  width: 640px;
+}
+
+.login{
+  position: relative;
+  margin:0 auto;
+  padding: 20px 20px 20px;
+  width:310px;
+}
+input{
+  font-family: 'clalibri';
+  font-size: 14px;
+}
+input[type=email], input[type=password]{
+  margin:5px;
+  padding: 0 10px;
+  width: 200px;
+  height: 34px;
+  color:white;
+  background:black;
+  border: 1px solid;
+  border-color:cornsilk;
+}
+input[type=submit]{
+  padding: 0 18px;
+  height: 30px;
+  font-size: 12px;
+  font-weight: bold;
+  color:white;
+  text-shadow: black;
+  background:black;
+  
+}
