@@ -76,6 +76,16 @@ app.use(function(req, res, next) {
   next();
   });
 
+  
+app.get('/api/users', cors(corsOptions),function (req, res) {
+    
+  db.any('select * from users')
+  .then(function (data) {
+      
+   res.send(data);
+  });     
+});
+
   app.get('/api/courses', cors(corsOptions),function (req, res) {
     
     db.any('select * from courses')
