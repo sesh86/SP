@@ -75,6 +75,26 @@ app.use(function(req, res, next) {
     res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
   next();
   });
+
+  app.get('/api/courses', cors(corsOptions),function (req, res) {
+    
+    db.any('select * from courses')
+    .then(function (data) {
+        
+     res.send(data);
+    });     
+});
+
+app.get('/api/topics', cors(corsOptions),function (req, res) {
+    
+  db.any('select * from topics')
+  .then(function (data) {
+      
+   res.send(data);
+  });     
+});
+
+
 app.listen(8000, (err) => {
   console.log(`running server on port: 8000`);
 });
