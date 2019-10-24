@@ -22,14 +22,14 @@ ReactDOM.render(
         {/* <Route path="/topics/:id/:name" component={Topic}/>
         <Route path="/courses" component={Course}/> */}
         <Route path="/dashboard" component={Dashboard}/>
-<<<<<<< HEAD
+
         <Route path="/course" component={Course}/>
         <Route path="/CourseAdd"component={CourseAdd}/>
-=======
+
         <Route path="/topics" component={Topic}/>
         <Route path="/topic-add" component={TopicAdd}/>
         <Route path="/topic-edit" component={TopicEdit}/>
->>>>>>> f1009527af87ca81c6ec8dfb7b5d19fa1455399f
+
     
       
     </div>
