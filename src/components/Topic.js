@@ -1,66 +1,69 @@
-import React, { Component } from 'react'
+import React,{Component} from 'react';
+import axios from 'axios';
 import {BrowserRouter,Route, Link, NavLink} from 'react-router-dom';
-import Axios from 'axios';
-import { tsImportEqualsDeclaration } from '@babel/types';
 
-export class Topic extends Component {
-    constructor(props){
-    super(props);
-    this.state={topic:[]}
-    }
-    componentDidMount(){
-        Axios('topic'+this.props.match.params.id)
-        .then(res=>{console.log(res);this.setState({topic:res.data})})
-    }
 
+class Topic extends React.Component {
+
+    constructor(props) {
+        super(props);
+        this.state={topics:[]}
+     }
+     componentDidMount(){
+        axios('topics')
+        .then(res=>{console.log(res);this.setState({topics:res.data})});
+      }
+      
+    
     render() {
         return (
-            
-            <div>
-                <h1>course topic</h1>
-                <table className="table">
-                <Link to="topic-add/">Add</Link>
-                
+            <div className="container">
+                <h1>Topic</h1>
+                <table className="table table-striped">
+                <thead>
+                  
+                     <ul class="nav nav-pills nav-fill">
+                         <li class="nav-item">
+                           <a class="nav-link active" href="CourseAdd">Add</a>
+                          </li>
+                        </ul>
+                    
+                        <tr> 
+                            
+                            <th scope="col">Title</th>
+                            <th scope="col">Action</th>
+                           
+                            
+                        </tr>
+                    </thead>
 
+                    <tbody>
+                    <TopicData topics ={this.state.topics}></TopicData>
+                    </tbody>
                     
                     
-                    <tr>
-                        <th>s.no</th>
-                        <th>topics</th>
-                    </tr>
-                    <tr>
-                        <td>1</td>
-                        <td>nodejs</td>
-                       <td> <button type>edit</button>
-                        <button>delete</button></td>
-                    </tr>
-                    <tr>
-                        <td>2</td>
-                        <td> mongo db</td>
-                        <td><button>edit</button>
-                        <button>delete</button></td>
-                        
-                    </tr>
-                    <tr>
-                        <td>3</td>
-                        <td>express</td>
-                       <td> <button>edit</button>
-                        <button>delete</button></td>
-                    </tr>
-                    <tr>
-                        <td>4</td>
-                        <td>react</td>
-                        <td> <button>edit</button>
-                        <button>delete</button></td>
-                    </tr>
-
                 </table>
+                
             </div>
         )
     }
 }
+ const TopicData =(props)=>{
+    return (<tbody>
+        {props.topics.map(topic=> (
+          <tr className="text-left" key={topic.id}>
+              <td>{topic.topic_title}</td>
+              <td>
+                            <button>edit</button>
+                                <button>delete</button>
+                            </td>
+             
+              </tr>
+        ))}
+        </tbody>);
+ } 
 
-export default Topic
+export default Topic;
 
     
  
