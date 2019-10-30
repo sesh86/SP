@@ -1,14 +1,25 @@
 import React, { Component } from 'react'
 import {BrowserRouter,Route, Link, NavLink} from 'react-router-dom';
+import Axios from 'axios';
+import { tsImportEqualsDeclaration } from '@babel/types';
 
 export class Topic extends Component {
+    constructor(props){
+    super(props);
+    this.state={topic:[]}
+    }
+    componentDidMount(){
+        Axios('topic'+this.props.match.params.id)
+        .then(res=>{console.log(res);this.setState({topic:res.data})})
+    }
+
     render() {
         return (
             
             <div>
                 <h1>course topic</h1>
                 <table className="table">
-                <Link to="topic-add">Add</Link>
+                <Link to="topic-add/">Add</Link>
                 
 
                     
