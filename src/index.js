@@ -6,16 +6,13 @@ import Login from './components/Login';
 import Course from './components/Course';
 import CourseAdd from './components/CourseAdd';
 import Dashboard from './components/Dashboard';
-<<<<<<< HEAD
 import Subtopic from './components/Subtopic';
 import SubtopicAdd from './components/SubtopicAdd';
 import SubtopicEdit from './components/SubtopicEdit';
 //import Topic from './components/Topic';
-=======
 import Topic from './components/Topic';
 import TopicAdd from './components/TopicAdd';
 import TopicEdit from './components/TopicEdit';
->>>>>>> 8e49e67e472759a1a443d111ce0e4256026f0b0f
 
 import {BrowserRouter,Route, Link, NavLink} from 'react-router-dom';
 
