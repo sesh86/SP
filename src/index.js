@@ -12,7 +12,10 @@ import Subtopic from './components/Subtopic';
 import SubtopicAdd from './components/SubtopicAdd';
 import SubtopicEdit from './components/SubtopicEdit';
 //import Topic from './components/Topic';
+<<<<<<< HEAD
 
+=======
+>>>>>>> fdf40c738e16e4c02139757a65795393dcaafbe0
 import Topic from './components/Topic';
 import TopicAdd from './components/TopicAdd';
 import TopicEdit from './components/TopicEdit';

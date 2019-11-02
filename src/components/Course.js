@@ -19,27 +19,21 @@ class Course extends React.Component {
         return (
             <div className="container">
                 <h1>Courses</h1>
+                <td><NavLink to={"/course-add/"}><button type="button" class="btn btn-primary">Add</button></NavLink></td>
                 <table className="table table-striped">
                 <thead>
-                  
-                     <ul class="nav nav-pills nav-fill">
-                         <li class="nav-item">
-                           <a class="nav-link active" href="CourseAdd">Add</a>
-                          </li>
-                        </ul>
-                    
                         <tr> 
-                            <th scope="col">id</th>
+                            <th scope="col">S.no</th>
                             <th scope="col">Title</th>
-                            <th scope="col">duration</th>
-                            <th scope="col">course_fee</th>
-                            <th scope="col">course_description</th>
-                            <th scope="col" className="col-md5">icon</th>
+                            <th scope="col">Duration</th>
+                            <th scope="col">Fee</th>
+                            
+                            <th scope="col" className="col-md5">Icon</th>
                         </tr>
                     </thead>
-                    <tbody>
+                    
                     <Courses courses={this.state.course}></Courses>
-                    </tbody>
+                    
                     
                     
                 </table>
@@ -50,16 +44,21 @@ class Course extends React.Component {
 }
  const Courses =(props)=>{
     return (<tbody>
-        {props.courses.map(course => (
-          <tr className="text-left" key={course.id}>
+        {props.courses.map((course) => (
+          <tr className="link hstrike" key={course.id}>
+              <td></td>
               <td>{course.title}</td>
               <td>{course.duration}</td>
               <td>{course.course_fee}</td>
-              <td>{course.course_description}</td>
-              <td>{course.icon}></td>
-              </tr>
-        ))}
-        </tbody>);
- } 
+              <td>{course.icon}</td>
+              
+              <td><NavLink to={"/course-edit/"+course.id}><button type="button" class="btn btn-warning">Edit</button></NavLink></td>
+              <td><button type="button" class="btn btn-danger">Delete</button></td>
+              
+            
+          </tr>
+    )   )}
+    </tbody>);
+} 
 
 export default Course;
