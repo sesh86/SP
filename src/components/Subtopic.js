@@ -1,94 +1,71 @@
-import React, { Component } from 'react'
-
+import React,{Component} from 'react';
 import axios from 'axios';
-
-
 import {BrowserRouter,Route, Link, NavLink} from 'react-router-dom';
 
-export class Subtopics extends Component {
+
+class Subtopic extends React.Component {
+
+    constructor(props) {
+        super(props);
+        this.state={subtopic:[]}
+     }
+     componentDidMount(){
+        axios('subtopics')
+        .then(res=>{console.log(res);this.setState({subtopic:res.data})});
+      }
+      
+    
     render() {
         return (
-            <div>
-              
+            <div className="container">
+                <h1>Subtopics</h1>
+                
+                <td><NavLink to={"subtopic-add"}>
+                <button type="button" class="btn btn-warning">Add</button> </NavLink></td>
+               
 
-                <h1> Subtopics </h1>
-                <ul class="nav nav-pills nav-fill">
-                <li class="nav-item">
-                  <a class="nav=link active"href="SubtopicAdd">Add</a>
-                </li>
-              </ul>
-                <table >
-  <tr>
-   <th>S.NO</th>
-    <th>TITLE</th>
-  
-  </tr>
-  <tr>
-    <td>1.  </td>
-    <td>React  </td>
-    <td> <button type>Edit</button>
-    
-    <button>Delete</button></td>
-  
-  </tr>
-
-  <tr>
-    <td>2.  </td>
-    <td>MongoDB  </td>
-    <td> <button type>Edit</button>
-    
-    <button>Delete</button></td>
-  
-  </tr>
-
-  <tr>
-    <td>3.  </td>
-    <td>JavaScript  </td>
-    <td> <button type>Edit</button>
-   
-    <button>Delete</button></td>
-  
-  </tr>
-
-  <tr>
-    <td>4.  </td>
-    <td>HTML  </td>
-    <td> <button type>Edit</button>
-    
-    <button>Delete</button></td>
-  
-  </tr>
-
-  <tr>
-    <td>5.  </td>
-    <td>Nodejs </td>
-    <td> <button type>Edit</button>
-    
-    <button>Delete</button></td>
-  
-  </tr>
-
-  <tr>
-    <td>6.  </td>
-    <td>Express  </td>
-    <td> <button type>Edit</button>
-    
-    <button>Delete</button></td>
-  
-  </tr>
-
-  <tr>
-    <td>7.  </td>
-    <td>CSS </td>
-    <td> <button type>Edit</button>
-    
-    <button>Delete</button></td>
-  
-  </tr>
-</table>
+                <table className="table table-striped">
+                <thead>
+                        <tr> 
+                            
+                            <th scope="col">id</th>
+                            <th scope="col">Title</th>
+                            
+                            
+                            
+                        </tr>
+                    </thead>
+                    
+                    <Subtopics Subtopics={this.state.subtopic}></Subtopics>
+                    
+                    
+                    
+                </table>
+                
             </div>
         )
     }
 }
+ const Subtopics =(props)=>{
+    return (<tbody>
+        
+        {props.Subtopics.map(Subtopic => (
+          <tr className="text-left" key={Subtopic.id}>
+              
+              <td>{Subtopic.id}</td>
 
-export default Subtopics;
+              <td>{Subtopic.topic_title}</td>
+                           
+              <td><NavLink to={"/subtopic-edit/"+Subtopic.id}><button type="button" class="btn btn-warning">Edit</button>  </NavLink></td>
+              
+              <td><button type="button" class="btn btn-danger">Delete</button> </td>
+              
+              
+              
+              
+          </tr>
+    )   )}
+    </tbody>);
+} 
+
+export default Subtopic;
