@@ -18,7 +18,7 @@ import * as serviceWorker from './serviceWorker';
 ReactDOM.render(
     <BrowserRouter>
     <div className="App">
-        <Route path="/login" component={Login}/>
+        <Route path="/" component={Login}/>
         {/* <Route path="/topics/:id/:name" component={Topic}/>
         <Route path="/courses" component={Course}/> */}
         <Route path="/dashboard" component={Dashboard}/>
