@@ -105,6 +105,8 @@ app.get('/api/topics', cors(corsOptions),function (req, res) {
 });
 
 
+
+
 app.listen(8000, (err) => {
   console.log(`running server on port: 8000`);
 });
