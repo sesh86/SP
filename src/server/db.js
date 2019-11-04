@@ -1,4 +1,4 @@
-const databaseConfig= {
+const databaseConfig = {
     "host": "fc9bebb.online-server.cloud",
     "port": 5432,
     "database": "postgres",
@@ -15,4 +15,4 @@ db.connect()
     .catch(error => {
         console.log('ERROR:', error.message || error);
     });
-module.exports=db;
+module.exports = db;
