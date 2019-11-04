@@ -72,7 +72,7 @@ class Subtopic extends React.Component {
                            
               <td><NavLink to={"/subtopic-edit/"+Subtopic.id}><button type="button" class="btn btn-warning">Edit</button>  </NavLink></td>
               
-              <td><button type onClick="button" class="btn btn-danger">Delete</button> </td>
+              <td> <button type="button" class="btn btn-danger" onClick={()=> props.delSubtopic(Subtopic.id)}key={Subtopic.id}>Delete</button> </td>
              
               
           </tr>
