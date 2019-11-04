@@ -13,9 +13,19 @@ import SubtopicAdd from './components/SubtopicAdd';
 import SubtopicEdit from './components/SubtopicEdit';
 //import Topic from './components/Topic';
 
+<<<<<<< HEAD
+=======
+
 import Topic from './components/Topic';
 import TopicAdd from './components/TopicAdd';
 import TopicEdit from './components/TopicEdit';
+
+
+>>>>>>> 756b275e093f4473fc4754270c8612fb37b80610
+import Topic from './components/Topic';
+import TopicAdd from './components/TopicAdd';
+import TopicEdit from './components/TopicEdit';
+
 
 import {BrowserRouter,Route, Link, NavLink} from 'react-router-dom';
 
@@ -25,11 +35,19 @@ import * as serviceWorker from './serviceWorker';
 ReactDOM.render(
     <BrowserRouter>
     <div className="App">
-        <Route path="/login" component={Login}/>
+        <Route path="/" component={Login}/>
+
+        {/* <Route path="/topics/:id/:name" component={Topic}/>
+        <Route path="/courses" component={Course}/> */}
+        <Route path="/dashboard" component={Dashboard}/>
+        <Route path="/subtopics" component={Subtopic}/>
+
          <Route path="/dashboard" component={Dashboard}/>
-        <Route path="/subtopic" component={Subtopic}/>
+        
+
         <Route path="/subtopic-add" component={SubtopicAdd}/>
-        <Route path="/subtopic-edit" component={SubtopicEdit}/>
+        <Route path="/subtopic-edit/:id" component={SubtopicEdit}/>
+        
 
         <Route path="/courses" component={Course}/>
         <Route path="/course-add"component={CourseAdd}/>
@@ -37,7 +55,7 @@ ReactDOM.render(
 
         <Route path="/topics" component={Topic}/>
         <Route path="/topic-add" component={TopicAdd}/>
-        <Route path="/topic-edit" component={TopicEdit}/>
+        <Route path="/topic-edit/:id" component={TopicEdit}/>
 
     
       
