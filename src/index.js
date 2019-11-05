@@ -11,13 +11,6 @@ import Dashboard from './components/Dashboard';
 import Subtopic from './components/Subtopic';
 import SubtopicAdd from './components/SubtopicAdd';
 import SubtopicEdit from './components/SubtopicEdit';
-//import Topic from './components/Topic';
-
-
-import Topic from './components/Topic';
-import TopicAdd from './components/TopicAdd';
-import TopicEdit from './components/TopicEdit';
-
 
 import Topic from './components/Topic';
 import TopicAdd from './components/TopicAdd';
@@ -32,15 +25,13 @@ import * as serviceWorker from './serviceWorker';
 ReactDOM.render(
     <BrowserRouter>
     <div className="App">
-        <Route path="/" component={Login}/>
-
-        {/* <Route path="/topics/:id/:name" component={Topic}/>
-        <Route path="/courses" component={Course}/> */}
+        <Route exact path="/" component={App}/>
+        <Route path="/login" component={Login}/>
+        
         <Route path="/dashboard" component={Dashboard}/>
         <Route path="/subtopics" component={Subtopic}/>
 
-         <Route path="/dashboard" component={Dashboard}/>
-        
+       
 
         <Route path="/subtopic-add" component={SubtopicAdd}/>
         <Route path="/subtopic-edit/:id" component={SubtopicEdit}/>

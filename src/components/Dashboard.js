@@ -13,7 +13,9 @@ class Dashboard extends React.Component {
     render() {
         return (
             <div className="container">
-                
+                <h1>Dashboard</h1>
+                <NavLink to="users">Users</NavLink>
+                <NavLink to="courses">Courses</NavLink>
             </div>
         )
     }
