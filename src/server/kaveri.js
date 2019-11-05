@@ -135,6 +135,19 @@ app.post('/api/courses/:id', cors(corsOptions),function (req, res) {
   
   });     
 });
+app.post('/api/courses/courseDelete/:id', cors(corsOptions),function (req, res) {
+  var id = req.params.id;
+  console.log(id);
+  
+  db.query('DELETE from courses   WHERE id = $1',
+    [ id])
+  .then(function(data){
+    res.send({'message':'Deletede'});
+  
+  
+  });     
+});
+
 app.listen(8000, (err) => {
   console.log(`running server on port: 8000`);
 });

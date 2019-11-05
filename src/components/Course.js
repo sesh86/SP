@@ -14,12 +14,29 @@ class Course extends React.Component {
         .then(res=>{console.log(res);this.setState({course:res.data})});
       }
       
+      delCourse = (id) => {
+        axios({
+            method: 'post',
+            url: 'courses/courseDelete/' + id
+         
+           })
+            .then(res=>{
+             var courses = this.state.course;
+             console.log(courses);
+             //return ; 
+             courses=courses.filter(e => e.id.indexOf(id)=== -1);
+   
+            //courses.splice(this,1);
+            this.setState({course:courses});
+        });
+      }
     
     render() {
         return (
             <div className="container">
                 <h1>Courses</h1>
                 <td><NavLink to={"/course-add/"}><button type="button" class="btn btn-primary">Add</button></NavLink></td>
+                
                 <table className="table table-striped">
                 <thead>
                         <tr> 
@@ -32,7 +49,7 @@ class Course extends React.Component {
                         </tr>
                     </thead>
                     
-                    <Courses courses={this.state.course}></Courses>
+                    <Courses courses={this.state.course} delCourse={this.delCourse}></Courses>
                     
                     
                     
@@ -44,6 +61,7 @@ class Course extends React.Component {
 }
  const Courses =(props)=>{
     return (<tbody>
+        
         {props.courses.map((course) => (
           <tr className="link hstrike" key={course.id}>
               <td></td>
@@ -53,10 +71,9 @@ class Course extends React.Component {
               <td>{course.icon}</td>
               
               <td><NavLink to={"/course-edit/"+course.id}><button type="button" class="btn btn-warning">Edit</button></NavLink></td>
-              <td><button type="button" class="btn btn-danger">Delete</button></td>
+              <td><button type="button" class="btn btn-danger" onClick={() => props.delCourse(course.id)}  key={course.id}>Delete</button></td>
               
-            
-          </tr>
+            </tr>
     )   )}
     </tbody>);
 } 

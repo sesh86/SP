@@ -41,7 +41,7 @@ class CourseAdd extends React.Component {
                 <form onSubmit={this.handleSubmit} method="post">
                    <div class="form-group">
                      <label for="exampleFormControlInput1">Tittle</label>
-                      <input type="text" name="course_title" class="form-control" id="exampleFormControlInput1"  placeholder="Tittle"/>
+                      <input type="text" name="title" class="form-control" id="exampleFormControlInput1"  placeholder="Tittle"/>
                     </div>
                     <div class="form-group">
                      <label for="exampleFormControlTextarea1">Description</label>

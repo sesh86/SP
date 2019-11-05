@@ -11,10 +11,21 @@ import Dashboard from './components/Dashboard';
 import Subtopic from './components/Subtopic';
 import SubtopicAdd from './components/SubtopicAdd';
 import SubtopicEdit from './components/SubtopicEdit';
+<<<<<<< HEAD
+=======
+//import Topic from './components/Topic';
+
+<<<<<<< HEAD
+=======
 
 import Topic from './components/Topic';
 import TopicAdd from './components/TopicAdd';
 import TopicEdit from './components/TopicEdit';
+ 
+import Topic from './components/Topic';
+import TopicAdd from './components/TopicAdd';
+import TopicEdit from './components/TopicEdit';
+>>>>>>> 516db26e77a27262aadf70816745c830dadf4d03
 
 
 import {BrowserRouter,Route, Link, NavLink} from 'react-router-dom';
