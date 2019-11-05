@@ -24,7 +24,7 @@ app.post('/api/login', cors(corsOptions),function (req, res) {
     console.log(req.body.email);
 
     db.any('select * from users where email=$1 and passwd=$2',[req.body.email, req.body.passwd])
-    .then(function (data) {
+     .then(function (data) {
         
     let l_data=JSON.stringify(data[0]);
     if(data.length){
@@ -113,8 +113,10 @@ app.get('/api/course/:id', cors(corsOptions),function (req, res) {
 app.post('/api/courses', cors(corsOptions),function (req, res) {
   var title = req.body.title;
   console.log(req.body);
-  var desc = req.body.description;
-  db.query('INSERT INTO courses(title,course_description) values($1,$2)',[title,desc])
+  var desc = req.body.course_description;
+  var fee = req.body.course_fee;
+  var duration = req.body.duration;
+  db.query('INSERT INTO courses(title,course_description,course_fee,duration) values($1,$2,$3,$4)',[title,desc,fee,duration])
   .then(function(data){
     res.send({'message':'inserted'});
   

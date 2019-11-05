@@ -76,7 +76,7 @@ class SubtopicAdd extends React.Component {
                  <label for="formGroupExampleInput2">Link :</label>
                  <input type="link" class=" " placeholder="Link"/>
                  </div>  
-                   <button type="submit" class="btn btn-primary">Submit</button>
+                   <button type="submit" class="btn btn-success">Submit</button>
                 </form>
             </div>
         )

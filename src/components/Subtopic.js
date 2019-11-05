@@ -7,23 +7,27 @@ class Subtopic extends React.Component {
 
     constructor(props) {
         super(props);
-        this.state={subtopic:[]}
+        this.state={subtopic:[],alert: ''}
      }
      componentDidMount(){
         axios('subtopics')
-        .then(res=>{console.log(res);this.setState({subtopic:res.data})});
+        .then(res=>
+            {console.log(res);this.setState({subtopic:res.data})});
       }
-      delSubtopic = (id) =>{
+
+      delSubtopic = (id) => {
+           this.setState({alert: ''});
           axios({
           method: 'post',
           url: 'subtopics/subtopicDelete/' + id
           
       })
       .then(res=>{
-          var subtopics = this.state.subtopics;
-          console.log(subtopics);
-          subtopics=subtopics.filter(e => e.id.indexOf(id)=== -1);
-          this.setState({subtopic:Subtopics});
+          var subtopics = this.state.subtopic;
+          this.setState({alert:res.data.message});
+          subtopics=subtopics.filter(e => String( e.id).indexOf(id)=== -1);
+
+          this.setState({subtopic:subtopics});
       });
     }
         
@@ -31,28 +35,33 @@ class Subtopic extends React.Component {
        
         return (
             <div className="container">
+                <div className="alert alert-info">
+                    {this.state.alert}
+                    </div>
                 
                 <h1>Subtopics</h1>
-                <form >
-                <td><NavLink to={"subtopic-add"}>
-                <button type="button" class="btn btn-warning">Add</button> </NavLink></td>
+                
+                <td><NavLink to={"/subtopic-add/"}>
+                <button type="button" class="btn btn-dark">Add</button> </NavLink></td>
                
 
                 <table className="table table-striped">
                 <thead>
                         <tr> 
                             
-                            <th scope="col">id</th>
+                            <th scope="col">S.no</th>
                             <th scope="col">Title</th>
+                            <th scope="col">Link</th>
+
                                                                                  
                         </tr>
                     </thead>
                     
-                    <Subtopics Subtopics={this.state.subtopic}></Subtopics>     
+                    <Subtopics subtopics={this.state.subtopic} delSubtopic={this.delSubtopic}></Subtopics>     
                     
                 </table>
                 
-                </form>
+                
             </div>
         );
        
@@ -63,8 +72,8 @@ class Subtopic extends React.Component {
     return (<tbody>
          
         
-        {props.Subtopics.map(Subtopic => (
-          <tr className="text-left" key={Subtopic.id}>
+        {props.subtopics.map(Subtopic => (
+          <tr className="link hstrike" key={Subtopic.id}>
               
               <td>{Subtopic.id}</td>
 
@@ -72,7 +81,7 @@ class Subtopic extends React.Component {
                            
               <td><NavLink to={"/subtopic-edit/"+Subtopic.id}><button type="button" class="btn btn-warning">Edit</button>  </NavLink></td>
               
-              <td> <button type="button" class="btn btn-danger" onClick={()=> props.delSubtopic(Subtopic.id)}key={Subtopic.id}>Delete</button> </td>
+              <td> <button type="button" class="btn btn-danger" onClick={()=> props.delSubtopic(Subtopic.id)} key={Subtopic.id}>Delete</button> </td>
              
               
           </tr>
