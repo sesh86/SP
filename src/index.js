@@ -13,15 +13,6 @@ import SubtopicAdd from './components/SubtopicAdd';
 import SubtopicEdit from './components/SubtopicEdit';
 //import Topic from './components/Topic';
 
-<<<<<<< HEAD
-=======
-
-import Topic from './components/Topic';
-import TopicAdd from './components/TopicAdd';
-import TopicEdit from './components/TopicEdit';
-
-
->>>>>>> 756b275e093f4473fc4754270c8612fb37b80610
 import Topic from './components/Topic';
 import TopicAdd from './components/TopicAdd';
 import TopicEdit from './components/TopicEdit';
@@ -35,7 +26,7 @@ import * as serviceWorker from './serviceWorker';
 ReactDOM.render(
     <BrowserRouter>
     <div className="App">
-        <Route path="/" component={Login}/>
+        <Route exact path="/" component={Login}/>
 
         {/* <Route path="/topics/:id/:name" component={Topic}/>
         <Route path="/courses" component={Course}/> */}
