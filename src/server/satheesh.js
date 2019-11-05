@@ -137,6 +137,15 @@ app.post('/api/subtopics/:id', cors(corsOptions),function (req, res) {
   });     
 });
 
+app.post('/api/subtopics/:id', cors(corsOptions),function (req, res) {
+  
+  var id = req.params.id;
+  console.log(id);
+  db.query('DELETE from subtopics WHERE id = $1')
+  .then(function (data) {
+      res.send({'message': 'Deleted'});
+  });     
+});
 
 
 app.listen(8000, (err) => {
