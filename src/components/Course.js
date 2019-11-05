@@ -7,7 +7,7 @@ class Course extends React.Component {
 
     constructor(props) {
         super(props);
-        this.state={course:[]}
+        this.state={course:[], alert: ''}
      }
      componentDidMount(){
         axios('courses')
@@ -15,6 +15,8 @@ class Course extends React.Component {
       }
       
       delCourse = (id) => {
+        
+        this.setState({alert: ''});
         axios({
             method: 'post',
             url: 'courses/courseDelete/' + id
@@ -22,9 +24,10 @@ class Course extends React.Component {
            })
             .then(res=>{
              var courses = this.state.course;
-             console.log(courses);
-             //return ; 
-             courses=courses.filter(e => e.id.indexOf(id)=== -1);
+             //console.log(res);
+             //return ;
+             this.setState({alert: res.data.message}); 
+             courses=courses.filter(e => String(e.id).indexOf(id)=== -1);
    
             //courses.splice(this,1);
             this.setState({course:courses});
@@ -34,6 +37,9 @@ class Course extends React.Component {
     render() {
         return (
             <div className="container">
+                <div className="alert alert-info">
+                    {this.state.alert}
+                </div>
                 <h1>Courses</h1>
                 <td><NavLink to={"/course-add/"}><button type="button" class="btn btn-primary">Add</button></NavLink></td>
                 
@@ -70,7 +76,10 @@ class Course extends React.Component {
               <td>{course.course_fee}</td>
               <td>{course.icon}</td>
               
+              <td><NavLink to={"/topics/"+course.id}><button type="button" class="btn btn-success">Topics</button></NavLink></td>
+
               <td><NavLink to={"/course-edit/"+course.id}><button type="button" class="btn btn-warning">Edit</button></NavLink></td>
+
               <td><button type="button" class="btn btn-danger" onClick={() => props.delCourse(course.id)}  key={course.id}>Delete</button></td>
               
             </tr>
