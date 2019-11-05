@@ -137,11 +137,12 @@ app.post('/api/subtopics/:id', cors(corsOptions),function (req, res) {
   });     
 });
 
-app.post('/api/subtopics/:id', cors(corsOptions),function (req, res) {
+app.post('/api/subtopics/subtopicDelete/:id', cors(corsOptions),function (req, res) {
   
   var id = req.params.id;
   console.log(id);
-  db.query('DELETE from subtopics WHERE id = $1')
+  db.query('DELETE from topics WHERE id = $1',
+ [id] )
   .then(function (data) {
       res.send({'message': 'Deleted'});
   });     
