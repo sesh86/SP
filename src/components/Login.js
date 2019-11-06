@@ -36,7 +36,7 @@ export default class Login extends React.Component {
             }
             else {
                 this.setState({alert: ''});
-                this.props.history.push('/dashboard');
+                //this.context.history.push('/dashboard');
             }
         });
 

@@ -10,7 +10,7 @@ class Subtopic extends React.Component {
         this.state={subtopic:[],alert: ''}
      }
      componentDidMount(){
-        axios('subtopics')
+        axios('subtopics/' + this.props.match.params.topicId)
         .then(res=>
             {console.log(res);this.setState({subtopic:res.data})});
       }
@@ -41,7 +41,7 @@ class Subtopic extends React.Component {
                 
                 <h1>Subtopics</h1>
                 
-                <td><NavLink to={"/subtopic-add/"}>
+                <td><NavLink to={"/subtopic-add/" + this.props.match.params.topicId}>
                 <button type="button" class="btn btn-dark">Add</button> </NavLink></td>
                
 

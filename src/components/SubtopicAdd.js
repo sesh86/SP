@@ -60,6 +60,7 @@ class SubtopicAdd extends React.Component {
                 <div className="alert alert-danger ">{this.state.alert}</div>
                   <div class="form-group">
                    <label for="formGroupExampleInput2">Title</label>
+                   <input type="text" value={this.props.match.params.topicId} name="parent_id"></input>
                    <input type="text" name="topic_title" class="form-control" id="formGroupExampleInput2" placeholder="Title"/>
                  </div>
                  <div class="form-group">

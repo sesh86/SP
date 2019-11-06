@@ -10,7 +10,7 @@ class Topic extends React.Component {
         this.state={topics:[]}
      }
      componentDidMount(){
-        axios('topics')
+         axios('topics/' + this.props.match.params.courseId)
         .then(res=>{console.log(res);this.setState({topics:res.data})});
       }
       
@@ -18,15 +18,12 @@ class Topic extends React.Component {
     render() {
         return (
             <div className="container">
-                <h1>Topic</h1>
-                <table className="table table-striped">
+                <h1>Topics</h1>
+                 
+                <NavLink to={"/topic-add/"+this.props.match.params.courseId}><button>Add</button></NavLink>
+                  <table className="table table-striped">
                 <thead>
                   
-                     <ul class="nav nav-pills nav-fill">
-                         <li class="nav-item">
-                           <a class="nav-link active" href="CourseAdd">Add</a>
-                          </li>
-                        </ul>
                     
                         <tr> 
                             
@@ -53,12 +50,12 @@ class Topic extends React.Component {
         {props.topics.map(topic=> (
           <tr className="text-left" key={topic.id}>
               <td>{topic.topic_title}</td>
-              <td>
-                            <button>edit</button>
-                                <button>delete</button>
-                            </td>
-             
-              </tr>
+              <td><NavLink to={"/subtopics/"+topic.id}><button type="button" class="btn btn-success">Subtopics</button>  </NavLink></td>
+              
+              <td><NavLink to={"/topic-edit/"+topic.id}><button type="button" class="btn btn-warning">Edit</button>  </NavLink></td>
+              
+              <td> <button type="button" class="btn btn-danger" onClick={()=> props.delTopic(topic.id)} key={topic.id}>Delete</button> </td>
+               </tr>
         ))}
         </tbody>);
  } 
