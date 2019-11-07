@@ -49,9 +49,12 @@ class Subtopic extends React.Component {
                 <thead>
                         <tr> 
                             
+                            
                             <th scope="col">S.no</th>
                             <th scope="col">Title</th>
-                            <th scope="col">Link</th>
+                            <th scope="col"></th>
+                            <th scope="col"></th> 
+                            
 
                                                                                  
                         </tr>

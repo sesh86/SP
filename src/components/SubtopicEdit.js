@@ -71,7 +71,10 @@ class SubtopicEdit extends React.Component {
 
                  <div class="form-group">
                  <label for="formGroupExampleInput2">Link :</label>
+
                  <input type="link" class=" " placeholder="Link"/>
+                 <button type="submit" class="btn btn-warning">Add</button>
+
                  </div>  
                    <button onclick type="submit" class="btn btn-primary">Submit</button>
                    
