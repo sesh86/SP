@@ -52,7 +52,8 @@ class Subtopic extends React.Component {
                             
                             <th scope="col">S.no</th>
                             <th scope="col">Title</th>
-                            <th scope="col"></th>
+                            <th scope="col">Collections</th>
+                            <th scope="col"></th> 
                             <th scope="col"></th> 
                             
 
@@ -75,14 +76,16 @@ class Subtopic extends React.Component {
     return (<tbody>
          
         
-        {props.subtopics.map(Subtopic => (
+        {props.subtopics.map((Subtopic, i) => (
           <tr className="link hstrike" key={Subtopic.id}>
               
-              <td>{Subtopic.id}</td>
+              <td>{i}</td>
 
               <td>{Subtopic.topic_title}</td>
-                           
-              <td><NavLink to={"/subtopic-edit/"+Subtopic.id}><button type="button" class="btn btn-warning">Edit</button>  </NavLink></td>
+              <td><NavLink to={"/collections/"+Subtopic.id }><button type="button" class="btn btn-success">Collections</button>  </NavLink></td>  
+
+              <td><NavLink to={"/subtopic-edit/"+Subtopic.id +"/"+Subtopic.parent_id}><button type="button" class="btn btn-warning">Edit</button>  </NavLink></td>
+              
               
               <td> <button type="button" class="btn btn-danger" onClick={()=> props.delSubtopic(Subtopic.id)} key={Subtopic.id}>Delete</button> </td>
              

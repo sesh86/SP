@@ -88,25 +88,171 @@ app.get('/api/users', cors(corsOptions),function (req, res) {
   });     
 });
 
-  app.get('/api/courses', cors(corsOptions),function (req, res) {
+app.get('/api/courses', cors(corsOptions),function (req, res) {
     
-    db.any('select * from courses')
-    .then(function (data) {
-        
-     res.send(data);
-    });     
+  db.any('select * from courses order by id asc')
+  .then(function (data) {
+      
+   res.send(data);
+  });     
+});
+ 
+app.get('/api/courses',cors(corsOptions),function(req,res){
+var id=req.params.id;
+db.any('select * from courses')
+.then(function(data){
+  res.send(data);
+});
 });
 
-app.get('/api/topics', cors(corsOptions),function (req, res) {
+
+app.get('/api/course/:id', cors(corsOptions),function (req, res) {
+var id = req.params.id;  
+db.any('select * from courses where id=$1', [id])
+.then(function (data) {
+  var result = data[0];  
+ res.send(result);
+});     
+});
+app.post('/api/courses', cors(corsOptions),function (req, res) {
+var title = req.body.title;
+console.log(req.body);
+var desc = req.body.course_description;
+var fee = req.body.course_fee;
+var duration = req.body.duration;
+db.query('INSERT INTO courses(title,course_description,course_fee,duration) values($1,$2,$3,$4)',[title,desc,fee,duration])
+.then(function(data){
+  res.send({'message':'inserted'});
+
+});     
+});
+app.post('/api/courses/:id', cors(corsOptions),function (req, res) {
+var title = req.body.title;
+var id = req.params.id;
+console.log(id);
+var courseDescription = req.body.course_description;
+var duration = req.body.duration;
+var fee = req.body.course_fee;
+db.query('UPDATE  courses SET title = $1, duration = $2, course_fee = $3, course_description = $4 WHERE id = $5',
+  [title, duration, fee, courseDescription, id])
+.then(function(data){
+  res.send({'message':'Updated'});
+
+
+});     
+});
+app.post('/api/courses/courseDelete/:id', cors(corsOptions),function (req, res) {
+var id = req.params.id;
+console.log(id);
+
+db.query('DELETE from courses   WHERE id = $1',
+  [ id])
+.then(function(data){
+  res.send({'message':'Deletede'});
+
+
+});     
+});
+
+
+app.get('/api/topics/:courseId', cors(corsOptions),function (req, res) {
     
-  db.any('select * from topics')
+  var courseId = req.params.courseId;
+  db.any('select * from topics WHERE course_id=$1', [courseId])
   .then(function (data) {
       
    res.send(data);
   });     
 });
 
+app.post('/api/topics', cors(corsOptions),function (req, res) {
+  var topicTitle = req.body.topic_title;
+  var desc = req.body.description;
+  var courseId = req.body.course_id;
+  db.query('INSERT INTO topics(topic_title, description, course_id) values($1, $2, $3)',[topicTitle, desc, courseId])
+  .then(function (data) {
+      res.send({'message': 'Inserted'});
+  });     
+});
 
+
+app.post('/api/topics/:id', cors(corsOptions),function (req, res) {
+  var topicTitle = req.body.topic_title;
+  var desc = req.body.description;
+  var id = req.params.id;
+  
+  db.query('UPDATE topics SET topic_title = $1, description = $2  WHERE id = $3',
+  [topicTitle, desc, id])
+  .then(function (data) {
+      res.send({'message': 'Updated'});
+  });     
+});
+
+app.post('/api/topics/topicDelete/:id', cors(corsOptions),function (req, res) {
+  
+  var id = req.params.id;
+  console.log(id);
+  db.query('DELETE from topics WHERE id = $1',
+ [id] )
+  .then(function (data) {
+      res.send({'message': 'Deleted'});
+  });     
+});
+
+
+app.get('/api/subtopics/:topicId', cors(corsOptions),function (req, res) {
+  var topicId =req.params.topicId;
+db.any('select * from topics where parent_id=$1 order by id asc', [topicId])
+
+.then(function (data) {
+    res.send(data);   
+});     
+});
+
+app.get('/api/subtopic/:id', cors(corsOptions),function (req, res) {
+  var id =req.params.id;
+db.any('select * from topics where id =$1',[id])
+
+.then(function (data) {
+    var result = data[0];
+ res.send(result );
+});     
+});
+
+app.post('/api/subtopics', cors(corsOptions),function (req, res) {
+  var topicTitle = req.body.topic_title;
+  var desc = req.body.description;
+  var parentId = req.body.parent_id;
+  
+  db.query('INSERT INTO topics(topic_title, description, parent_id) values($1, $2, $3)',[topicTitle, desc, parentId])
+  .then(function (data) {
+      res.send({'message': 'Inserted'});
+  });     
+});
+
+
+app.post('/api/subtopics/:id', cors(corsOptions),function (req, res) {
+  var topicTitle = req.body.topic_title;
+  var desc = req.body.description;
+  var id = req.params.id;
+  console.log("here");
+  db.query('UPDATE topics SET topic_title = $1, description = $2  WHERE id = $3',
+  [topicTitle, desc, id])
+  .then(function (data) {
+      res.send({'message': 'Updated'});
+  });     
+});
+
+app.post('/api/subtopics/subtopicDelete/:id', cors(corsOptions),function (req, res) {
+  
+  var id = req.params.id;
+  console.log(id);
+  db.query('DELETE from topics WHERE id = $1',
+ [id] )
+  .then(function (data) {
+      res.send({'message': 'Deleted'});
+  });     
+});
 
 
 app.listen(8000, (err) => {

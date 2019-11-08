@@ -31,7 +31,7 @@ ReactDOM.render(
        
 
         <Route path="/subtopic-add/:topicId" component={SubtopicAdd}/>
-        <Route path="/subtopic-edit/:id" component={SubtopicEdit}/>
+        <Route path="/subtopic-edit/:id/:topicId" component={SubtopicEdit}/>
         
 
         <Route path="/courses" component={Course}/>

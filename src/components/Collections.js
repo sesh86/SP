@@ -3,7 +3,7 @@ import axios from 'axios';
 import {BrowserRouter,Route, Link, NavLink} from 'react-router-dom';
 
 
-class SubtopicAdd extends React.Component {
+class Collections extends React.Component {
     constructor(props) {
         super(props);
         this.state = {subtopic: "", alert: ''}
@@ -46,7 +46,7 @@ class SubtopicAdd extends React.Component {
             //handle success
             console.log("here"+response);
             console.log('test')
-            curr.props.history.push('/subtopics/' + curr.props.match.params.topicId)
+            curr.props.history.push('/collections/' + curr.props.match.params.topicId)
         })
         .catch(function (response) {
             //handle error
@@ -57,23 +57,16 @@ class SubtopicAdd extends React.Component {
      render() {
         return (
             <div className="container">
-                <h1>Add Subtopic </h1>
+                <h1> Collections </h1>
                 
                 <form onSubmit={this.handleSubmit} method="post">
                 <div className="alert alert-danger ">{this.state.alert}</div>
-                  <div class="form-group">
-                   <label for="formGroupExampleInput2">Title</label>
-                   <input type="hidden" value={this.props.match.params.topicId} name="parent_id"></input>
-                   <input type="text" name="topic_title" class="form-control" id="formGroupExampleInput2" placeholder="Title"/>
-                 </div>
-                 <div class="form-group">
-                   <label for="formGroupExampleInput2">Description</label>
-                   
-                   <textarea rows="7" class="form-control" name="description" id="formGroupExampleInput2" placeholder="Description"/>
-                 </div>
+                 
+                 
                 
                  <div class="form-group">
-                 <select><option value="LINK">Link</option> <option value="FILE">File</option></select>
+                 <select><option value="LINK">Link</option> <option value="FILE">File</option>
+                 </select>
 
                  
                  
