@@ -12,6 +12,7 @@ import Dashboard from './components/Dashboard';
 import Subtopic from './components/Subtopic';
 import SubtopicAdd from './components/SubtopicAdd';
 import SubtopicEdit from './components/SubtopicEdit';
+import Collections from './components/Collections';
   
 import Topic from './components/Topic';
 import TopicAdd from './components/TopicAdd';
@@ -32,7 +33,8 @@ ReactDOM.render(
        
 
         <Route path="/subtopic-add/:topicId" component={SubtopicAdd}/>
-        <Route path="/subtopic-edit/:id" component={SubtopicEdit}/>
+        <Route path="/subtopic-edit/:id/:topicId" component={SubtopicEdit}/>
+        <Route path="/collections/:subtopicId" component={Collections}/>
         
 
         <Route path="/courses" component={Course}/>
