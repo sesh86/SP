@@ -10,7 +10,7 @@ class Collections extends React.Component {
      }
 
      componentDidMount(){
-      axios('/subtopic/' + this.props.match.params.id)
+      axios('/api/collections/' + this.props.match.params.id)
       .then(res=>{console.log(res);this.setState({subtopic:res.data})});
     }
 
@@ -20,12 +20,12 @@ class Collections extends React.Component {
       var data = {};
       this.setState({alert: ''});
       for (let i = 0; i < e.target.elements.length; i++) {
-        if (e.target.elements[i].name == 'topic_title' && e.target.elements[i].value == false) {
-          this.setState({alert: 'Please give title'});
+        if (e.target.elements[i].name == 'File' && e.target.elements[i].value == false) {
+          this.setState({alert: 'Please give FIle'});
           return false;
         }
-       else if (e.target.elements[i].name == 'description' && e.target.elements[i].value == false) {
-          this.setState({alert: 'Please give description'});
+       else if (e.target.elements[i].name == 'Link' && e.target.elements[i].value == false) {
+          this.setState({alert: 'Please give Link'});
           return false;
         }
       
@@ -38,7 +38,7 @@ class Collections extends React.Component {
        let curr=this;
       axios({
         method: 'post',
-        url: 'subtopics',
+        url: 'collections',
         data: data
       //  config: { headers: {'Content-Type': 'multipart/form-data' }}
         })
@@ -72,19 +72,42 @@ class Collections extends React.Component {
                  
                  
                  <label for="formGroupExampleInput2">File :</label>
-                 <input type="file" class=" " placeholder="upload"/>
+                 <input type="file" name="topic_collections"class=" " placeholder="upload"/>
                  <label for="formGroupExampleInput2">Link :</label>
-                 <input type="link" class=" " placeholder="Link"/>
-                 <button type="submit" class="btn btn-warning">Add</button>
+                 <input type="link" name="topic_collections"class=" " placeholder="Link"/>
+                 <NavLink to={"/https:www.youtube.com/"+ this.props.match.params.topicId}>
+                <button type="button" class="btn btn-dark">Add</button> </NavLink>
                 
                  
                  
                  </div>  
                    <button type="submit" class="btn btn-success">Submit</button>
                 </form>
-            </div>
-        )
+
+
+                
+            
+
+      <table className="table table-striped">
+        <thead>
+        <tr> 
+            
+            
+            <th scope="col">S.no</th>
+            <th scope="col">Collections</th>
+            
+            <th scope="col"></th> 
+            <th scope="col"></th> 
+            
+
+                                                                 
+        </tr> 
+      </thead>
+         </table>
+           </div>
+          
+        ) 
     }   
 
 }   
-export default SubtopicAdd;
+export default Collections;

@@ -255,6 +255,30 @@ app.post('/api/subtopics/subtopicDelete/:id', cors(corsOptions),function (req, r
 });
 
 
+app.post('/api/collections/:subtopicId', cors(corsOptions),function (req, res) {
+  var topic_collections = req.body.topic_collections;
+  
+  var parentId = req.body.parent_id;
+  
+  db.query('INSERT INTO topic_collections (sourse,topic_id,collection_ type) values($1, $2, $3)',[topic_collections])
+  .then(function (data) {
+      res.send({'message': 'Inserted'});
+  });     
+});
+
+
+app.get('/api/collections/:subtopicId', cors(corsOptions),function (req, res) {
+  var topic_collection =req.params.topic_collection;
+db.any('select * from topic_collections where parent_id=$1 order by id asc', [topic_collections])
+
+.then(function (data) {
+    res.send(data);   
+});     
+});
+
+
+
+
 app.listen(8000, (err) => {
   console.log(`running server on port: 8000`);
 });
