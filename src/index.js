@@ -6,6 +6,7 @@ import Login from './components/Login';
 import Course from './components/Course';
 import CourseAdd from './components/CourseAdd';
 import CourseEdit from './components/CourseEdit';
+import Profile from './components/Profile';
 import Dashboard from './components/Dashboard';
 
 import Subtopic from './components/Subtopic';
@@ -37,6 +38,7 @@ ReactDOM.render(
         <Route path="/courses" component={Course}/>
         <Route path="/course-add"component={CourseAdd}/>
         <Route path="/course-edit/:id" component={CourseEdit}/>
+        <Route path="/profile" component={Profile}/>
 
         <Route path="/topics/:courseId" component={Topic}/>
         <Route path="/topic-add/:courseId"  render={(props) => <TopicAdd {...props} />}/>
