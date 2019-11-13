@@ -6,27 +6,42 @@ import {BrowserRouter,Route, Link, NavLink} from 'react-router-dom';
 class CourseAdd extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {course: ""}
+        this.state = {
+            selectedFile: null
+          }
 
      }
+     onChangeHandler=event=>{
+
+        this.setState({
+            selectedFile: event.target.files[0],
+            loaded: 0,
+          })
+        }
             
         
      handleSubmit=(e)=>{
          e.preventDefault()
-         var data={};
-         for (let i=0; i <e.target.elements.length;i++){
-         data[e.target.elements[i].name]=e.target.elements[i].value;
-         }
+          var data={};
+          for (let i=0; i <e.target.elements.length;i++){
+          data[e.target.elements[i].name]=e.target.elements[i].value;
+          }
+         let curr=this
          
-         console.log(data);
+         //console.log(data);
+         var formData = new FormData(e.target);
+        // formData.append('file', this.state.selectedFile, this.state.selectedFile.name);
          axios({
              method: 'post',
              url: 'courses',
-             data: data,
+             data: formData,
+            // config: { headers: {'Content-Type': 'multipart/form-data' }}
+
             }) 
             
             .then(function(response){
                 console.log("here"+response);
+               curr.props.history.push('/Courses')
             })
             .catch(function(response){
                 console.log(response);
@@ -40,8 +55,8 @@ class CourseAdd extends React.Component {
                 <h1>Add Course</h1>
                 <form onSubmit={this.handleSubmit} method="post">
                    <div class="form-group">
-                     <label for="exampleFormControlInput1">Tittle</label>
-                      <input type="text" name="title" class="form-control" id="exampleFormControlInput1"  placeholder="Tittle"/>
+                     <label for="exampleFormControlInput1">Title</label>
+                      <input type="text" name="title" class="form-control" id="exampleFormControlInput1"  placeholder="Title"/>
                     </div>
                     <div class="form-group">
                      <label for="exampleFormControlInput1">Duration(days)</label>
@@ -58,8 +73,7 @@ class CourseAdd extends React.Component {
                     
                     <div class="form-group">
                         <label for="exampleFormControlInput1">File</label>
-                        <input type="file" class=" " placeholder="upload"/>
-
+                        <input type="file" name="file" onChange={this.onChangeHandler}/>
                     </div>
                     <button type="submit" class="btn btn-primary">Submit</button>
                 </form>

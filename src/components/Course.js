@@ -52,6 +52,7 @@ class Course extends React.Component {
                             <th scope="col">Fee</th>
                             
                             <th scope="col" className="col-md5">Icon</th>
+                            <th scope="col">Actions</th>
                         </tr>
                     </thead>
                     
@@ -68,19 +69,21 @@ class Course extends React.Component {
  const Courses =(props)=>{
     return (<tbody>
         
-        {props.courses.map((course) => (
+        {props.courses.map((course,i) => (
           <tr className="link hstrike" key={course.id}>
-              <td></td>
+              <td>{i}</td>
               <td>{course.title}</td>
               <td>{course.duration}</td>
               <td>{course.course_fee}</td>
               <td>{course.icon}</td>
               
-              <td><NavLink to={"/topics/"+course.id}><button type="button" class="btn btn-success">Topics</button></NavLink></td>
+              
+              <td><NavLink to={"/topics/"+course.id}><button type="button" class="btn btn-success">Topics</button></NavLink>
 
-              <td><NavLink to={"/course-edit/"+course.id}><button type="button" class="btn btn-warning">Edit</button></NavLink></td>
+              <NavLink to={"/course-edit/"+course.id}><button type="button" class="btn btn-warning">Edit</button></NavLink>
 
-              <td><button type="button" class="btn btn-danger" onClick={() => props.delCourse(course.id)}  key={course.id}>Delete</button></td>
+              <button type="button" class="btn btn-danger" onClick={() => props.delCourse(course.id)}  key={course.id}>Delete</button></td>
+              
               
             </tr>
     )   )}

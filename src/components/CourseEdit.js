@@ -20,7 +20,7 @@ class CourseEdit extends React.Component {
       for (let i=0; i <e.target.elements.length;i++){
       data[e.target.elements[i].name]=e.target.elements[i].value;
       }
-      
+      let curr=this;
       //console.log(data);
       axios({
           method: 'post',
@@ -30,6 +30,8 @@ class CourseEdit extends React.Component {
          
          .then(function(response){
              console.log("here"+response);
+             console.log('test')
+             curr.props.history.push('/Courses')
          })
          .catch(function(response){
              console.log(response);
