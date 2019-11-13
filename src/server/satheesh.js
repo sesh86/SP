@@ -260,7 +260,7 @@ app.post('/api/collections/:subtopicId', cors(corsOptions),function (req, res) {
   
   var parentId = req.body.parent_id;
   
-  db.query('INSERT INTO topic_collections (sourse,topic_id,collection_ type) values($1, $2, $3)',[topic_collections])
+  db.query('INSERT INTO topic_collections (sourse,topic_id,collection_type) values($1, $2, $3)',[topic_collections])
   .then(function (data) {
       res.send({'message': 'Inserted'});
   });     

@@ -20,7 +20,8 @@ class SubtopicAdd extends React.Component {
       var data = {};
       this.setState({alert: ''});
       for (let i = 0; i < e.target.elements.length; i++) {
-        if (e.target.elements[i].name == 'topic_title' && e.target.elements[i].value == false) {
+        if (e.target.elements[i].name == 'topic_title' && e.target.elements[i].value == false) 
+        {
           this.setState({alert: 'Please give title'});
           return false;
         }

@@ -102,7 +102,7 @@ var id=req.params.id;
 db.any('select * from courses')
 .then(function(data){
   res.send(data);
-});
+});   
 });
 
 

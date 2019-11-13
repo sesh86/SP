@@ -38,7 +38,7 @@ class Collections extends React.Component {
        let curr=this;
       axios({
         method: 'post',
-        url: 'collections',
+        url: 'Collections',
         data: data
       //  config: { headers: {'Content-Type': 'multipart/form-data' }}
         })
@@ -46,7 +46,7 @@ class Collections extends React.Component {
             //handle success
             console.log("here"+response);
             console.log('test')
-            curr.props.history.push('/collections/' + curr.props.match.params.topicId)
+            curr.props.history.push('/Collections/' + curr.props.match.params.topicId)
         })
         .catch(function (response) {
             //handle error
@@ -75,8 +75,7 @@ class Collections extends React.Component {
                  <input type="file" name="topic_collections"class=" " placeholder="upload"/>
                  <label for="formGroupExampleInput2">Link :</label>
                  <input type="link" name="topic_collections"class=" " placeholder="Link"/>
-                 <NavLink to={"/https:www.youtube.com/"+ this.props.match.params.topicId}>
-                <button type="button" class="btn btn-dark">Add</button> </NavLink>
+                 
                 
                  
                  

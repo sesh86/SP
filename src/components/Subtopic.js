@@ -61,7 +61,8 @@ class Subtopic extends React.Component {
                         </tr>
                     </thead>
                     
-                    <Subtopics subtopics={this.state.subtopic} delSubtopic={this.delSubtopic}></Subtopics>     
+                    <Subtopics subtopics={this.state.subtopic} delSubtopic={this.delSubtopic}>
+                        </Subtopics>     
                     
                 </table>
                 
