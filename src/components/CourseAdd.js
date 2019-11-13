@@ -29,19 +29,19 @@ class CourseAdd extends React.Component {
          let curr=this
          
          //console.log(data);
-        // var formData = new FormData(e.target);
-
+         var formData = new FormData(e.target);
+        // formData.append('file', this.state.selectedFile, this.state.selectedFile.name);
          axios({
              method: 'post',
              url: 'courses',
-             data: data,
-             config: { headers: {'Content-Type': 'multipart/form-data' }}
+             data: formData,
+            // config: { headers: {'Content-Type': 'multipart/form-data' }}
 
             }) 
             
             .then(function(response){
                 console.log("here"+response);
-         //       curr.props.history.push('/Courses')
+               curr.props.history.push('/Courses')
             })
             .catch(function(response){
                 console.log(response);
@@ -55,8 +55,8 @@ class CourseAdd extends React.Component {
                 <h1>Add Course</h1>
                 <form onSubmit={this.handleSubmit} method="post">
                    <div class="form-group">
-                     <label for="exampleFormControlInput1">Tittle</label>
-                      <input type="text" name="title" class="form-control" id="exampleFormControlInput1"  placeholder="Tittle"/>
+                     <label for="exampleFormControlInput1">Title</label>
+                      <input type="text" name="title" class="form-control" id="exampleFormControlInput1"  placeholder="Title"/>
                     </div>
                     <div class="form-group">
                      <label for="exampleFormControlInput1">Duration(days)</label>

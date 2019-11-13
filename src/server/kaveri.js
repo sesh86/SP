@@ -1,11 +1,14 @@
 const cors = require('cors');
 const jwt = require('jsonwebtoken');
-var multer = require('multer');
+const fileUpload = require('express-fileupload');
 
 var express = require('express')
   , bodyParser = require('body-parser');
 
 var app = express();
+
+
+app.use(fileUpload());
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -113,34 +116,26 @@ app.get('/api/course/:id', cors(corsOptions), function (req, res) {
       res.send(result);
     });
 });
-var storage = multer.diskStorage({
-  destination: function (req, file, cb) {
-    cb(null, '../../public')
-  },
-  filename: function (req, file, cb) {
-    console.log(file);
-    cb(null, Date.now() + '-' + file.originalname)
-  }
-})
-var upload = multer({ storage: storage }).single('file')
+
 app.post('/api/courses', cors(corsOptions), function (req, res) {
   var title = req.body.title;
-  console.log(req.body);
+  console.log(req.files);
   var desc = req.body.course_description;
   var fee = req.body.course_fee;
   var duration = req.body.duration;
-  var file = req.body.file;
-  if (file) {
-    upload(req, res, function (err) {
-
-      if (err instanceof multer.MulterError) {
-        return res.status(500).json(err)
-      } else if (err) {
-        return res.status(500).json(err)
+  var icon = '';
+  //var file = req.body.file;
+  if (req.files) {
+   let fileName=Date.now()+req.files.file.name;
+    let imageFile = req.files.file;
+    let dirname = '../../public/uploads/courses';
+    imageFile.mv(`${dirname}/${fileName}`, function(err) {
+      if (err) {
+        return res.status(500).send(err);
       }
-      //return res.status(200).send(req.file)
-
-    })
+      icon = fileName;
+      //res.send('file uploaded successfully');
+    });
   }
   db.query('INSERT INTO courses(title,course_description,course_fee,duration) values($1,$2,$3,$4)', [title, desc, fee, duration])
     .then(function (data) {
